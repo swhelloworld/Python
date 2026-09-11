@@ -1,7 +1,9 @@
+import time
+import random
 dominios = ['.com', '.net', '.org']
-alfabeto = [' ', 'A', 'Á', 'Â', 'B', 'C', 'D', 'E', 'É', 'Ê', 'F', 'G', 'H', 'I', 'Í', 'J', 'K', 'L', 'M', 'N', 'O', 'Ó', 'Ô', 'Õ', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'á', 'â', 'ã', 'é', 'ê', 'í', 'ó', 'ô', 'õ', 'ú', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '.', '@', '-', '_', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
+caracteres = [' ', 'A', 'Á', 'Â', 'B', 'C', 'D', 'E', 'É', 'Ê', 'F', 'G', 'H', 'I', 'Í', 'J', 'K', 'L', 'M', 'N', 'O', 'Ó', 'Ô', 'Õ', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'á', 'â', 'ã', 'é', 'ê', 'í', 'ó', 'ô', 'õ', 'ú', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '.', '@', '-', '_', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
 
-caracteres = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', ' ', '!', '"', '#', '$', '%', '&', "'", '(', ')', '*', '+', ',', '-', '.', '/', ':', ';', '<', '=', '>', '?', '@', '[', '\\', ']', '^', '_', '`', '{', '|', '}', '~', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
+caracteres_senha = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', ' ', '!', '"', '#', '$', '%', '&', "'", '(', ')', '*', '+', ',', '-', '.', '/', ':', ';', '<', '=', '>', '?', '@', '[', '\\', ']', '^', '_', '`', '{', '|', '}', '~', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
 
 cadastro = []
 login = []
@@ -13,9 +15,6 @@ try:
 except FileNotFoundError:
     pass
 
-pera = []
-uva = []
-banana = 0
 while True:
 	print('-' * 30)
 	print('\033[38;5;202mBEM-VINDO À TELA INICIAL\033[0m')
@@ -35,7 +34,7 @@ while True:
 		print('-' * 30)
 		while True:
 			nome = input('\033[38;5;226mDigite o seu primeiro nome: \033[0m').strip()
-			if not all(caracte in alfabeto[0:71] for caracte in nome):
+			if not all(caracte in caracteres[0:71] for caracte in nome):
 				print('\033[38;5;196mNúmeros e caracteres especiais são inválidos.\033[0m')
 				print('-' * 30)
 			elif len(nome) > 20:
@@ -51,7 +50,7 @@ while True:
 		while True:
 			print('-' * 30)
 			sobrenome = input('\033[38;5;226mDigite o seu sobrenome: \033[0m').strip()
-			if not all(x in alfabeto[0:71] for x in sobrenome):
+			if not all(x in caracteres[0:71] for x in sobrenome):
 				print('\033[38;5;196mNúmeros e caracteres especiais são inválidos.\033[0m')
 			elif len(sobrenome) > 30:
 				print('\033[38;5;196mSobrenome muito longo.\033[0m')
@@ -63,36 +62,35 @@ while True:
 				
 		while True:
 			print('-' * 30)
-			shrek = ' '
 			email = input('\033[38;5;226mDigite o seu email: \033[0m').strip()
-			qtd = len(email)
-			index = email.find('@')
+			arroba = email.find('@')
+			email_jaexiste = ''
 			for m, n in enumerate(login):
 				if email == login[m][2] and len(login) >= 1:
-					shrek = 's'
-			if shrek == 's':
+					email_jaexiste = True
+			if email_jaexiste == True:
 				print('\033[38;5;196mEmail já cadastrado.\033[0m')
-			elif not all(car in alfabeto[44:73] for car in email[index:]):
+			elif not all(car in caracteres[44:73] for car in email[arroba:]):
 				print('\033[38;5;196mTipo de caractere inválido.\033[0m')			
-			elif not all(u in alfabeto[44:] for u in email[:index]):
+			elif not all(u in caracteres[44:] for u in email[:arroba]):
 				print('\033[38;5;196mTipo de caractere inválido.\033[0m')
 			elif '@' not in email:
 				print('\033[38;5;196mEmail inválido, precisa conter @.\033[0m')	
-			elif not any(dominio in email[qtd-4: qtd] for dominio in dominios):
+			elif not any(dominio in email[len(email) -4: len(email)] for dominio in dominios):
 				print('\033[38;5;196mSeu domínio está incorreto, informe domínios como: .com .org ou .net !\033[0m')
-			elif len(email[:index]) < 4 and email.count('@') < 2:
+			elif len(email[:arroba]) < 4 and email.count('@') < 2:
 				print('\033[38;5;196mCaracteres insuficientes. \033[0m')	
 			elif email.count('@') > 1:
 				print('\033[38;5;196mSomente um @ é permitido\033[0m')
-			elif len(email[:index]) > 15:
+			elif len(email[:arroba]) > 15:
 				print('\033[38;5;196mEmail muito longo.\033[0m')
-			elif len(email[index:]) > 15:
+			elif len(email[arroba:]) > 15:
 				print('\033[38;5;196mEmail muito longo.\033[0m')
-			elif len(email[index:len(email) - 4]) < 6:
+			elif len(email[arroba: len(email) - 4]) < 6:
 				print('\033[38;5;196mCaracteres insuficientes\033[0m')
-			elif email[index:].find('.') != len(email[index:]) - 4:
+			elif email[arroba:].find('.') != len(email[arroba:]) - 4:
 				print('\033[38;5;196mTipo de email inválido.\033[0m')
-			elif not all(k in alfabeto[44:69] for k in email[0]):
+			elif not all(k in caracteres[44:69] for k in email[0]):
 				print('\033[38;5;196mPrimeiro caractere precisa ser letra\033[0m')
 			else:
 				print('\033[38;5;46mEmail cadastrado com sucesso.\033[0m')
@@ -109,11 +107,11 @@ while True:
 				print('\033[38;5;196mSenha precisa de no mínimo 8 caracteres.\033[0m')
 			elif len(senha) > 30:
 				print('\033[38;5;196mSenha muito longa.\033[0m')
-			elif not all(a in caracteres for a in senha):
+			elif not all(a in caracteres_senha for a in senha):
 				print('\033[38;5;196mTipo de caractere não permitido em senhas.\033[0m')		
-			elif not any(b in caracteres[53:84] for b in senha):
+			elif not any(b in caracteres_senha[53:84] for b in senha):
 				print('\033[38;5;196mPrecisa de caracteres especiais como (! @ # $ )\033[0m')
-			elif not any(c in caracteres[84:] for c in senha):
+			elif not any(c in caracteres_senha[84:] for c in senha):
 				print('\033[38;5;196mPrecisa de pelo menos um número\033[0m')
 			else:
 				print('\033[38;5;46mConta cadastrada com sucesso.\033[0m')
@@ -131,14 +129,15 @@ while True:
 		print('\033[38;5;202mBEM-VINDO À TELA DE LOG IN\033[0m')
 		print('-' * 30)
 		while True:
+			email_correto= ''
+			posição_email = ''
 			email_login = input('\033[38;5;226mDigite seu email: \033[0m')
 			for k, o in enumerate(login):
 				if email_login == login[k][2]:
-					pera.append('s')
+					email_correto = True		
 				if email_login == o[2]:
-					banana = k			
-			if 's' in pera:
-				pera.clear()
+					posição_email = k			
+			if email_correto == True:
 				print('\033[38;5;46mEmail correto!\033[0m')
 				break
 			else:
@@ -148,15 +147,15 @@ while True:
 		while True:
 			print('-' * 30)
 			senha_login = input('\033[38;5;226mDigite sua senha: \033[0m')
+			senha_correta = ''
 			for gu, qu in enumerate(login):
-				if senha_login == login[banana][3]:
-					uva.append('s')
-			if 's' in uva:
-				uva.clear()
+				if senha_login == login[posição_email][3]:
+					senha_correta = True
+			if senha_correta == True:
 				print('\033[38;5;46mSenha correta.\033[0m')
 				print(f'\033[38;5;46mLogin efetuado com sucesso!\033[0m')
 				print('-' * 30)
-				print(f'\033[38;5;203mSeja Bem-Vindo(a)\033[0m \033[38;5;14m{login[banana][0]}.\033[0m')
+				print(f'\033[38;5;203mSeja Bem-Vindo(a) \033[0m\033[38;5;14m{login[posição_email][0]}\033[0m\033[38;5;203m.\033[0m')
 				break
 			else:
 				print('\033[38;5;196mSenha incorreta.\033[0m')
@@ -167,7 +166,6 @@ while True:
 			print('\033[38;5;227m[0] - Sair Da Conta.\033[0m')
 			escolha = int(input('-:  '))
 			if escolha == 1:
-				import random
 				rand = random.randint(0, 100)
 				cont = 0
 				print('-' * 30)
@@ -180,7 +178,7 @@ while True:
 						print('\033[31mNúmero inválido, digite um número de 0 a 100.\033[0m')
 						print('-' * 30)
 					if a == rand:
-						print(f'\033[32mParabéns {login[banana][0]} você acertou!\033[0m')
+						print(f'\033[32mParabéns {login[posição_email][0]} você acertou!\033[0m')
 						print(f'\033[32mForam necessarias {cont} tentativas para você acertar.\033[0m')
 						print('-' * 30)
 						break
@@ -212,8 +210,6 @@ while True:
 								print('\033[31mVocê está MUITO longe!\033[0m')
 								print('-' * 30)
 			if escolha == 0:
-				import time
-				banana = ''
 				print('Saindo da conta...')
 				time.sleep(2)
 				print('Isso pode demorar alguns segundos.')
