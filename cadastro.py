@@ -11,45 +11,46 @@ login = []
 try:
     with open("usuarios.txt", "r") as arquivo:
         for linha in arquivo:
-            dados = linha.strip().split(",")
-            login.append(dados)
+            if linha.strip():
+            	dados = linha.strip().split(",")
+            	login.append(dados)
 except FileNotFoundError:
     pass
 
 while True:
-	print('-' * 30)
+	print('\033[38;5;208m-\033[0m' * 30)
 	print('\033[38;5;202mBEM-VINDO À TELA INICIAL\033[0m')
-	print('-' * 30)
+	print('\033[38;5;208m-\033[0m' * 30)
 	print('''\033[38;5;226m[1] - Log In\033[0m
 \033[38;5;227m[2] - Se Cadastrar\033[0m
 \033[38;5;228m[3] - Sair\033[0m''')
-	opcao = int(input('-: '))
+	opcao = int(input('\033[38;5;226m-: \033[0m'))
 	if opcao != 1 and opcao != 2 and opcao != 3:
 		print('\033[31mResposta inválida!\033[0m')
 	elif opcao == 3:
 		print('Volte Sempre!')
 		break
 	elif opcao == 2:
-		print('-' * 30)
+		print('\033[38;5;208m-\033[0m' * 30)
 		print('\033[38;5;202mBEM VINDO À TELA DE CADASTRO!\033[0m')
-		print('-' * 30)
+		print('\033[38;5;208m-\033[0m' * 30)
 		while True:
 			nome = input('\033[38;5;226mDigite o seu primeiro nome: \033[0m').strip()
 			if not all(caracte in caracteres[0:71] for caracte in nome):
 				print('\033[38;5;196mNúmeros e caracteres especiais são inválidos.\033[0m')
-				print('-' * 30)
+				print('\033[38;5;226m-\033[0m' * 30)
 			elif len(nome) > 20:
 				print('\033[38;5;196mNome muito longo.\033[0m')
-				print('-' * 30)
+				print('\033[38;5;226m-\033[0m' * 30)
 			elif len(nome) < 2:
 				print('\033[38;5;196mNome muito curto.\033[0m')
-				print('-' * 30)
+				print('\033[38;5;226m-\033[0m' * 30)
 			else:
 				print('\033[38;5;46mPrimeiro nome cadastrado com sucesso.\033[0m')
 				break
 				
 		while True:
-			print('-' * 30)
+			print('\033[38;5;226m-\033[0m' * 30)
 			sobrenome = input('\033[38;5;226mDigite o seu sobrenome: \033[0m').strip()
 			if not all(x in caracteres[0:71] for x in sobrenome):
 				print('\033[38;5;196mNúmeros e caracteres especiais são inválidos.\033[0m')
@@ -62,12 +63,12 @@ while True:
 				break
 				
 		while True:
-			print('-' * 30)
+			print('\033[38;5;226m-\033[0m' * 30)
 			email = input('\033[38;5;226mDigite o seu email: \033[0m').strip()
 			arroba = email.find('@')
 			email_jaexiste = ''
 			for m, n in enumerate(login):
-				if email == login[m][2] and len(login) >= 1:
+				if email == login[m][2]:
 					email_jaexiste = True
 			if email_jaexiste == True:
 				print('\033[38;5;196mEmail já cadastrado.\033[0m')
@@ -91,14 +92,14 @@ while True:
 				print('\033[38;5;196mCaracteres insuficientes\033[0m')
 			elif email[arroba:].find('.') != len(email[arroba:]) - 4:
 				print('\033[38;5;196mTipo de email inválido.\033[0m')
-			elif not all(k in caracteres[44:69] for k in email[0]):
+			elif not all(k in caracteres[45:71] for k in email[0]):
 				print('\033[38;5;196mPrimeiro caractere precisa ser letra\033[0m')
 			else:
 				print('\033[38;5;46mEmail cadastrado com sucesso.\033[0m')
 				break
 			
 		while True:
-			print('-' * 30)
+			print('\033[38;5;226m-\033[0m' * 30)
 			senha = input('\033[38;5;226mDigite sua senha: \033[0m')
 			if senha == senha.upper():
 				print('\033[38;5;196mPrecisa de pelo menos um caractere minúsculo.\033[0m')
@@ -115,7 +116,8 @@ while True:
 			elif not any(c in caracteres_senha[84:] for c in senha):
 				print('\033[38;5;196mPrecisa de pelo menos um número\033[0m')
 			else:
-				print('\033[38;5;46mConta cadastrada com sucesso.\033[0m')
+				print('\033[38;5;46mSenha cadastrada com sucesso.\033[0m')
+				print(f'\033[38;5;46mParabéns \033[0m\033[38;5;14m{nome.lower().capitalize()}\033[0m\033[38;5;46m, sua conta acabou de ser cadastrada.\033[0m')
 				cadastro.append(nome.lower().capitalize())
 				cadastro.append(sobrenome)
 				cadastro.append(email)
@@ -126,9 +128,9 @@ while True:
 				break
 				
 	elif opcao == 1:
-		print('-' * 30)
+		print('\033[38;5;208m-\033[0m' * 30)
 		print('\033[38;5;202mBEM-VINDO À TELA DE LOG IN\033[0m')
-		print('-' * 30)
+		print('\033[38;5;208m-\033[0m' * 30)
 		while True:
 			email_correto = ''
 			posição_email = ''
@@ -143,10 +145,10 @@ while True:
 				break
 			else:
 				print('\033[38;5;196mEmail incorreto.\033[0m')
-				print('-' * 30)	
+				print('\033[38;5;226m-\033[0m' * 30)	
 				
 		while True:
-			print('-' * 30)
+			print('\033[38;5;226m-\033[0m' * 30)
 			senha_login = input('\033[38;5;226mDigite sua senha: \033[0m')
 			senha_correta = ''
 			for gu, qu in enumerate(login):
@@ -155,7 +157,7 @@ while True:
 			if senha_correta == True:
 				print('\033[38;5;46mSenha correta.\033[0m')
 				print(f'\033[38;5;46mLogin efetuado com sucesso!\033[0m')
-				print('-' * 30)
+				print('\033[38;5;208m-\033[0m' * 30)
 				print(f'\033[38;5;203mSeja Bem-Vindo(a) \033[0m\033[38;5;14m{login[posição_email][0]}\033[0m\033[38;5;203m.\033[0m')
 				break
 			else:
@@ -163,26 +165,26 @@ while True:
 		
 		while True:
 			print('\033[38;5;202mESCOLHA UM JOGO PARA JOGAR:\033[0m')
-			print('-' * 30)
+			print('\033[38;5;208m-\033[0m' * 30)
 			print('\033[38;5;226m[1] - Jogo Da Advinhação.\033[0m')
 			print('\033[38;5;227m[0] - Sair Da Conta.\033[0m')
-			escolha = int(input('-:  '))
+			escolha = int(input('\033[38;5;226m-:  \033[0m'))
 			if escolha == 1:
 				rand = random.randint(0, 100)
 				cont = 0
-				print('-' * 30)
-				print('\033[38;5;226mJOGO DA ADVINHAÇÃO.\033[0m')
-				print('-' * 30)
+				print('\033[38;5;228m-\033[0m' * 30)
+				print('\033[38;5;161mJOGO DA ADVINHAÇÃO.\033[0m')
+				print('\033[38;5;228m-\033[0m' * 30)
 				while True:
 					cont = cont + 1
-					a = int(input('\033[35mAdvinhe um número de 0 a 100: \033[0m'))
+					a = int(input('\033[38;5;13mAdvinhe um número de 0 a 100: \033[0m'))
 					if a > 100 or a < 0:
 						print('\033[31mNúmero inválido, digite um número de 0 a 100.\033[0m')
-						print('-' * 30)
+						print('\033[38;5;13-\033[0m' * 30)
 					if a == rand:
 						print(f'\033[32mParabéns {login[posição_email][0]} você acertou!\033[0m')
 						print(f'\033[32mForam necessarias {cont} tentativas para você acertar.\033[0m')
-						print('-' * 30)
+						print('\033[38;5;208m-\033[0m' * 30)
 						break
 					if a != rand and a <= 100 and a >= 0:
 						print('\033[31mVocê errou, continue tentando!\033[0m')
@@ -190,30 +192,30 @@ while True:
 						if a == rand - b or a == rand + b and a <= 100:
 							if a >= 0:
 								print('\033[34mVocê está PERTISSIMO!!!!\033[0m')
-								print('-' * 30)
+								print('\033[38;5;13m-\033[0m' * 30)
 					for c in range(0, 20):
 						if a == (rand - 6) - c or a == (rand + 6) + c and a <= 100:
 							if a >= 0:
 								print ('\033[32mVocê está PERTO!!\033[0m')
-								print('-' * 30)
+								print('\033[38;5;13m-\033[0m' * 30)
 					for d in range(0, 20):
 						if a == (rand - 26) - d or a == (rand + 26) + d and a <= 100:
 							if a >= 0:
 								print('\033[38;5;208mVocê está quase chegando perto!\033[0m')
-								print('-' * 30)
+								print('\033[38;5;13m-\033[0m' * 30)
 					for e in range (0, 20):
 						if a == (rand - 46) - e or a == (rand + 46) + e and a <= 100:
 							if a >= 0:
 								print('\033[33mVocê está longe!\033[0m')
-								print('-' * 30)
+								print('\033[38;5;13m-\033[0m' * 30)
 					for f in range (0, 40):
 						if a == (rand-66) - f or a == (rand+66) + f and a <= 100:
 							if a >= 0:
 								print('\033[31mVocê está MUITO longe!\033[0m')
-								print('-' * 30)
+								print('\033[38;5;13m-\033[0m' * 30)
 			if escolha == 0:
 				print('\033[38;5;227mSaindo da conta...\033[0m')
 				time.sleep(2)
 				print('\033[38;5;226mIsso pode demorar alguns segundos.\033[0m')
 				time.sleep(4)
-				break	
+				break
