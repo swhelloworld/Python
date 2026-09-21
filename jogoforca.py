@@ -7,7 +7,7 @@ tentativas_erradas = []
 
 def jogar_novamente():
 	while True:
-		print('''[1] - JOGAR NOVAMENTE''')
+		print('[1] - JOGAR NOVAMENTE')
 		opção = int(input('-: '))
 		if opção == 1:
 			break
@@ -64,7 +64,7 @@ add_tema()
 add_hifen()
 while True:		
 	add_boneco()	
-	print(*tema_escondido,'        ', *tentativas_erradas)
+	print(*tema_escondido,'          ', *tentativas_erradas)
 	letra = input('Digite uma letra: ').strip().lower()
 	add_letra()	
 	if letra not in tema_escolhido and letra not in tentativas_erradas and len(letra) == 1 and letra.isalpha():
@@ -72,12 +72,12 @@ while True:
 		
 	if len(tentativas_erradas) == 7:
 		add_boneco()
-		print(*tema_escolhido,'        ', *tentativas_erradas)
+		print(*tema_escolhido,'          ', *tentativas_erradas)
 		print('\033[31mVocê perdeu!!\033[0m')
 		resetar_jogo()
 			
 	if tema_escondido.count('-') == 0:
 		add_boneco()
-		print(*tema_escondido, '        ', *tentativas_erradas)
+		print(*tema_escondido, '          ', *tentativas_erradas)
 		print('\033[32mParabéns Você Acertou!!!\033[0m')
 		resetar_jogo()
