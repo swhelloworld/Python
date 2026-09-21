@@ -1,9 +1,9 @@
 import random
-tema = ['casa', 'mesa', 'mato', 'quadro', 'rampa', 'arvore', 'bola', 'carro', 'dama', 'estado', 'faca', 'gaiola', 'homem', 'imperio', 'jaula', 'kiwi', 'lapis', 'mulher', 'navio', 'osmose', 'padaria']
+tema = ('casa', 'mesa', 'mato', 'quadro', 'rampa', 'arvore', 'bola', 'carro', 'dama', 'estado', 'faca', 'gaiola', 'homem', 'imperio', 'jaula', 'kiwi', 'lapis', 'mulher', 'navio', 'osmose', 'padaria', 'queijo', 'ratoeira', 'sabonete', 'trovoada', 'uva', 'vitoria', 'xadrez', 'zoologico', 'amor', 'brasil', 'camelo', 'desejo', 'escola', 'futebol', 'grilo', 'hotel', 'igreja', 'janeiro', 'luva', 'madeira', 'novela', 'ovario', 'patinete', 'quilometro', 'rato', 'sistema', 'trabalho', 'universo', 'verme', 'xerox')
 tema_escolhido = []
 tema_escondido = []
 boneco = {'cabeça': ' ', 'tronco1': ' ', 'tronco2': ' ', 'braço_direito': ' ', 'braço_esquerdo': ' ', 'perna_direita': ' ', 'perna_esquerda': ' '}
-tentativas = []
+tentativas_erradas = []
 
 def jogar_novamente():
 	while True:
@@ -17,29 +17,29 @@ def add_hifen():
 		tema_escondido.append('-')
 
 def add_letra():
-	for c, d in enumerate(tema_escolhido):
-		if d == letra:
-			tema_escondido[c] = letra
+	for posição, caractere in enumerate(tema_escolhido):
+		if caractere == letra:
+			tema_escondido[posição] = letra
 
 def add_tema():
 	rand = random.randint(0, len(tema) - 1)
-	for z in tema[rand]:
-		tema_escolhido.append(z)
+	for palavra in tema[rand]:
+		tema_escolhido.append(palavra)
 				
-def bonec():
-	if len(tentativas) == 1:
+def add_boneco():
+	if len(tentativas_erradas) == 1:
 		boneco['cabeça'] = 0
-	if len(tentativas) == 2:
+	elif len(tentativas_erradas) == 2:
 		boneco['tronco1'] = '|'
-	if len(tentativas) == 3:
+	elif len(tentativas_erradas) == 3:
 		boneco['tronco2'] = '|'
-	if len(tentativas) == 4:
+	elif len(tentativas_erradas) == 4:
 		boneco['braço_direito'] = '/'
-	if len(tentativas) == 5:
+	elif len(tentativas_erradas) == 5:
 		boneco['braço_esquerdo'] = '\\'
-	if len(tentativas) == 6:
+	elif len(tentativas_erradas) == 6:
 		boneco['perna_direita'] = '/'
-	if len(tentativas) == 7:
+	elif len(tentativas_erradas) == 7:
 		boneco['perna_esquerda'] = '\\'
 	print('=' * 30)
 	print('  |--------| ')
@@ -51,40 +51,33 @@ def bonec():
 	print('/ | \\')
 	print('=' * 30)
  	
-def derrota():
-	print('\033[31mVocê perdeu!!\033[0m')
+def resetar_jogo():
 	boneco.update({'cabeça': ' ', 'tronco1': ' ', 'tronco2': ' ', 'braço_direito': ' ', 'braço_esquerdo': ' ', 'perna_direita': ' ', 'perna_esquerda': ' '})
-	tentativas.clear()
+	tentativas_erradas.clear()
 	tema_escolhido.clear()
 	tema_escondido.clear()
 	add_tema()
 	add_hifen()
 	jogar_novamente()
-	
-def vitoria():
-	print('\033[32mParabéns Você Acertou!!!\033[0m')
-	boneco.update({'cabeça': ' ', 'tronco1': ' ', 'tronco2': ' ', 'braço_direito': ' ', 'braço_esquerdo': ' ', 'perna_direita': ' ', 'perna_esquerda': ' '})
-	tentativas.clear()
-	tema_escolhido.clear()
-	tema_escondido.clear()
-	add_tema()
-	add_hifen()
-	jogar_novamente()
-							
+						
 add_tema()
 add_hifen()
 while True:		
-	bonec()	
-	print(*tema_escondido)	
+	add_boneco()	
+	print(*tema_escondido,'        ', *tentativas_erradas)
 	letra = input('Digite uma letra: ').strip().lower()
 	add_letra()	
-	if letra not in tema_escolhido:
-		tentativas.append('1') 
-	if len(tentativas) == 7:
-		bonec()
-		print(*tema_escolhido)
-		derrota()	
+	if letra not in tema_escolhido and letra not in tentativas_erradas and len(letra) == 1 and letra.isalpha():
+		tentativas_erradas.append(letra) 
+		
+	if len(tentativas_erradas) == 7:
+		add_boneco()
+		print(*tema_escolhido,'        ', *tentativas_erradas)
+		print('\033[31mVocê perdeu!!\033[0m')
+		resetar_jogo()
+			
 	if tema_escondido.count('-') == 0:
-		bonec()
-		print(*tema_escondido)
-		vitoria()
+		add_boneco()
+		print(*tema_escondido, '        ', *tentativas_erradas)
+		print('\033[32mParabéns Você Acertou!!!\033[0m')
+		resetar_jogo()
