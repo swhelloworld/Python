@@ -1,5 +1,6 @@
 import random
-tema = ('casa', 'mesa', 'mato', 'quadro', 'rampa', 'arvore', 'bola', 'carro', 'dama', 'estado', 'faca', 'gaiola', 'homem', 'imperio', 'jaula', 'kiwi', 'lapis', 'mulher', 'navio', 'osmose', 'padaria', 'queijo', 'ratoeira', 'sabonete', 'trovoada', 'uva', 'vitoria', 'xadrez', 'zoologico', 'amor', 'brasil', 'camelo', 'desejo', 'escola', 'futebol', 'grilo', 'hotel', 'igreja', 'janeiro', 'luva', 'madeira', 'novela', 'ovario', 'patinete', 'quilometro', 'rato', 'sistema', 'trabalho', 'universo', 'verme', 'xerox')
+import sys
+temas = ('arrependimento', 'brutalidade', 'carpinteiro', 'dinamarca', 'encanador', 'fertilidade', 'ganancioso', 'computador', 'dispositivo', 'empreendedor', 'fidelidade', 'generosidade', 'humanidade', 'intimidade', 'juventude', 'kiwi', 'longevidade', 'mediocridade', 'necessidade', 'oportunidade', 'procrastinar', 'quantidade', 'relacionamento', 'superficial', 'tecnologia', 'uniforme', 'vascularizado', 'xadrez', 'zoologico', 'ambicioso', 'bochecha', 'complexo', 'dicionario', 'extrovertido', 'felicidade', 'gentileza', 'habilidade', 'importante', 'julgamento', 'linguagem', 'maturidade', 'nacionalidade', 'organismo', 'perspectiva', 'quilometro', 'responsabilidade', 'superestimado', 'transparente', 'universidade', 'vulnerabilidade', 'xenofobia', 'aposentado', 'bibliografia', 'caracteristica', 'desenvolvimento', 'exponencial', 'fragmentado', 'guardanapo', 'hereditario', 'independente', 'jabuticaba', 'lubrificante', 'meteorologia', 'neurotransmissor')
 tema_escolhido = []
 tema_escondido = []
 boneco = {'cabeça': ' ', 'tronco1': ' ', 'tronco2': ' ', 'braço_direito': ' ', 'braço_esquerdo': ' ', 'perna_direita': ' ', 'perna_esquerda': ' '}
@@ -7,10 +8,14 @@ tentativas_erradas = []
 
 def jogar_novamente():
 	while True:
-		print('[1] - JOGAR NOVAMENTE')
-		opção = int(input('-: '))
-		if opção == 1:
+		print('[1] - Jogar Novamente.\n[2] - Sair. ')
+		opcao = int(input('-: '))
+		if opcao == 1:
 			break
+		elif opcao == 2:
+			sys.exit()
+		else:
+			print('\033[1;38;5;9mERRO: Opção inexistente.\033[0m')
 
 def add_hifen():
 	for c in range(0, len(tema_escolhido)):
@@ -22,13 +27,13 @@ def add_letra():
 			tema_escondido[posição] = letra
 
 def add_tema():
-	rand = random.randint(0, len(tema) - 1)
-	for palavra in tema[rand]:
+	rand = random.randint(0, len(temas) - 1)
+	for palavra in temas[rand]:
 		tema_escolhido.append(palavra)
 				
 def add_boneco():
 	if len(tentativas_erradas) == 1:
-		boneco['cabeça'] = 0
+		boneco['cabeça'] = 'O'
 	elif len(tentativas_erradas) == 2:
 		boneco['tronco1'] = '|'
 	elif len(tentativas_erradas) == 3:
@@ -64,20 +69,21 @@ add_tema()
 add_hifen()
 while True:		
 	add_boneco()	
-	print(*tema_escondido,'          ', *tentativas_erradas)
+	print(*tema_escondido)
 	letra = input('Digite uma letra: ').strip().lower()
-	add_letra()	
+	add_letra()
+		
 	if letra not in tema_escolhido and letra not in tentativas_erradas and len(letra) == 1 and letra.isalpha():
 		tentativas_erradas.append(letra) 
 		
 	if len(tentativas_erradas) == 7:
 		add_boneco()
-		print(*tema_escolhido,'          ', *tentativas_erradas)
-		print('\033[31mVocê perdeu!!\033[0m')
+		print(*tema_escolhido)
+		print('\033[1;31mVocê perdeu!\033[0m')
 		resetar_jogo()
 			
 	if tema_escondido.count('-') == 0:
 		add_boneco()
-		print(*tema_escondido, '          ', *tentativas_erradas)
-		print('\033[32mParabéns Você Acertou!!!\033[0m')
+		print(*tema_escondido)
+		print('\033[1;32mParabéns, você acertou!\033[0m')
 		resetar_jogo()
