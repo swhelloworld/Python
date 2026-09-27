@@ -91,7 +91,7 @@ def main():
 			break
 		
 		if ' ' not in tabuleiro.values():
-			print('\033[1;244mEmpate\033[0m')
+			print('\033[1;29mO jogo empatou :/ \033[0m')
 			break
 		
 		vez_do_computador(tabuleiro)
