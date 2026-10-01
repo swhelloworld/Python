@@ -78,9 +78,9 @@ def condicao_vitoria(tabuleiro, simbolo):
 
 def main():
 	print('\033[1;29mEscolha um dos números para fazer uma jogada.\033[0m')
-	print(f'| {1} | {2} | {3} |')
-	print(f'| {4} | {5} | {6} |')
-	print(f'| {7} | {8} | {9} |')
+	print(f'| 1 | 2 | 3 |')
+	print(f'| 4 | 5 | 6 |')
+	print(f'| 7 | 8 | 9 |')
 	while True:
 		
 		vez_do_jogador(tabuleiro)
