@@ -97,18 +97,16 @@ def jogador_vs_computador():
 		
 		if condicao_vitoria(tabuleiro, 'X'):
 			print('\033[1;32mParabéns você venceu!\n(o computador é burro!)\033[0m\n')
-			print('JOGAR NOVAMENTE?')
 			break
 		
 		if ' ' not in tabuleiro.values():
-			print('\033[1;29mO jogo empatou :/ \033[0m')
+			print('\033[1;29mO jogo empatou :/ \033[0m\n')
 			break
 		
 		vez_do_computador(tabuleiro)
 			
 		if condicao_vitoria(tabuleiro, 'O'):
 			print('\033[1;31mComputador venceu!\033[0m\n')
-			print('JOGAR NOVAMENTE?')
 			break
 
 
@@ -123,19 +121,16 @@ def jogador_vs_jogador():
 		
 		if condicao_vitoria(tabuleiro, 'X'):
 			print('\033[1;32mParabéns jogador X você venceu!\033[0m\n')
-			print('JOGAR NOVAMENTE?')
 			break
 		
 		if ' ' not in tabuleiro.values():
-			print('\033[1;29mO jogo empatou :/ \033[0m')
+			print('\033[1;29mO jogo empatou :/ \033[0m\n')
 			break
 			
 		vez_do_jogador(tabuleiro, 'O', 'Jogador O escolheu posição')
 		
 		if condicao_vitoria(tabuleiro, 'O'):
-			print('\033[1;32mParabéns jogador O você venceu\033[0m\n')
-			print('JOGAR NOVAMENTE?')
-			print('')
+			print('\033[1;32mParabéns jogador O você venceu!\033[0m\n')
 			break
 			
 			
