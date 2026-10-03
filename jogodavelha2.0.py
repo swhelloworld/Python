@@ -5,7 +5,6 @@ def mostrar_tabuleiro(tabuleiro):
 	print(f'| {tabuleiro[1]} | {tabuleiro[2]} | {tabuleiro[3]} |')
 	print(f'| {tabuleiro[4]} | {tabuleiro[5]} | {tabuleiro[6]} |')
 	print(f'| {tabuleiro[7]} | {tabuleiro[8]} | {tabuleiro[9]} |\n')
-	
 
 
 def vez_do_jogador(tabuleiro, simbolo, texto):
@@ -27,7 +26,6 @@ def vez_do_jogador(tabuleiro, simbolo, texto):
 		except (ValueError, KeyError):
 			print('\033[1;31mApenas números entre 1 e 9 são permitidos.\033[0m')
 			mostrar_tabuleiro(tabuleiro)
-
 			
 									
 def vez_do_computador(tabuleiro):
@@ -43,7 +41,6 @@ def vez_do_computador(tabuleiro):
 	tabuleiro[aleatorio] = 'O'
 	print(f'\033[1;33mComputador escolheu a posição {aleatorio}\033[0m')
 	mostrar_tabuleiro(tabuleiro)
-	
 
 
 def condicao_vitoria(tabuleiro, simbolo):
@@ -51,28 +48,27 @@ def condicao_vitoria(tabuleiro, simbolo):
 		return True
 
 	elif tabuleiro[4] == simbolo and tabuleiro[5] == simbolo and tabuleiro[6] == simbolo:
-	    return True
+		return True
 	
 	elif tabuleiro[7] == simbolo and tabuleiro[8] == simbolo and tabuleiro[9] == simbolo:
-	    return True
+		return True
 	
 	elif tabuleiro[1] == simbolo and tabuleiro[4] == simbolo and tabuleiro[7] == simbolo:
-	    return True
+		return True
 	
 	elif tabuleiro[2] == simbolo and tabuleiro[5] == simbolo and tabuleiro[8] == simbolo:
-	    return True
+		return True
 	
 	elif tabuleiro[3] == simbolo and tabuleiro[6] == simbolo and tabuleiro[9] == simbolo:
-	    return True
+		return True
 	
 	elif tabuleiro[1] == simbolo and tabuleiro[5] == simbolo and tabuleiro[9] == simbolo:
-	    return True
+		return True
 	
 	elif tabuleiro[3] == simbolo and tabuleiro[5] == simbolo and tabuleiro[7] == simbolo:
-	    return True
+		return True
 	
 	return False
-	
 	
 	
 def cabecalho(titulo):
@@ -83,16 +79,13 @@ def cabecalho(titulo):
 	print(f'| 1 | 2 | 3 |')
 	print(f'| 4 | 5 | 6 |')
 	print(f'| 7 | 8 | 9 |')
-		
 
 
 def jogador_vs_computador():
 	tabuleiro = {1:' ', 2: ' ', 3: ' ', 4: ' ', 5: ' ', 6: ' ', 7: ' ', 8: ' ', 9: ' '}
-	
 	cabecalho('Bem- vindo ao modo jogador contra computador')
 	
 	while True:
-		
 		vez_do_jogador(tabuleiro, 'X', 'Você escolheu posição')
 		
 		if condicao_vitoria(tabuleiro, 'X'):
@@ -110,10 +103,8 @@ def jogador_vs_computador():
 			break
 
 
-
 def jogador_vs_jogador():
 	tabuleiro = {1:' ', 2: ' ', 3: ' ', 4: ' ', 5: ' ', 6: ' ', 7: ' ', 8: ' ', 9: ' '}
-	
 	cabecalho('Bem- vindo ao modo jogador contra jogador')
 	
 	while True:
@@ -131,8 +122,7 @@ def jogador_vs_jogador():
 		
 		if condicao_vitoria(tabuleiro, 'O'):
 			print('\033[1;32mParabéns jogador O você venceu!\033[0m\n')
-			break
-			
+			break	
 			
 			
 def main():
@@ -154,7 +144,6 @@ def main():
 			
 		else:
 			print('\033[1;31mCaractere inválido!\033[0m')
-	
 	
 	
 if __name__ == '__main__':
