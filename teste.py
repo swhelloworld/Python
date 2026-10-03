@@ -71,14 +71,16 @@ def condicao_vitoria(tabuleiro, simbolo):
 	return False
 	
 	
-def checar_vitoria(tabuleiro, texto):
-	if condicao_vitoria(tabuleiro, 'X'):
+def checar_vitoria(tabuleiro, texto, simbolo):
+	if condicao_vitoria(tabuleiro, simbolo):
 		print(texto)
 		return True
 		
 	if ' ' not in tabuleiro.values():
 		print('\033[1;29mO jogo empatou :/ \033[0m\n')
 		return True
+		
+	return False
 	
 	
 def cabecalho(titulo):
@@ -96,14 +98,14 @@ def jogador_vs_computador():
 	cabecalho('Bem- vindo ao modo jogador contra computador')
 	
 	while True:
-		vez_do_jogador(tabuleiro, 'X', 'Você escolheu posição')
+		vez_do_jogador(tabuleiro, 'X', 'Você escolheu posição',
 		
-		if checar_vitoria(tabuleiro, '\033[1;32mParabéns você venceu!\033[0m\n'):
+		if checar_vitoria(tabuleiro, 'X' '\033[1;32mParabéns você venceu!\033[0m\n'):
 			break
 		
 		vez_do_computador(tabuleiro)
 			
-		if checar_vitoria(tabuleiro, '\033[1;31mO computador venceu\033[0m\n'):
+		if checar_vitoria(tabuleiro, 'O' '\033[1;31mO computador venceu\033[0m\n'):
 			break
 
 
@@ -114,12 +116,12 @@ def jogador_vs_jogador():
 	while True:
 		vez_do_jogador(tabuleiro, 'X', 'Jogador X escolheu posição')
 		
-		if checar_vitoria(tabuleiro, '\033[1;32mParabéns jogador X você venceu!\033[0m\n'):
+		if checar_vitoria(tabuleiro, 'X', '\033[1;32mParabéns jogador X você venceu!\033[0m\n'):
 			break
 			
 		vez_do_jogador(tabuleiro, 'O', 'Jogador O escolheu posição')
 		
-		if checar_vitoria(tabuleiro, '\033[1;32mParabéns jogador O você venceu!\033[0m\n'):
+		if checar_vitoria(tabuleiro, 'O' '\033[1;32mParabéns jogador O você venceu!\033[0m\n'):
 			break
 			
 			
