@@ -128,11 +128,9 @@ def jogador_vs_jogador():
 def main():
 	while True:
 		print('[1] - Jogador vs jogador.\n[2] - Jogar contra computador.\n[3] - Sair')
-		
 		escolha = input('-: ')
 		
 		time.sleep(1)
-		
 		if escolha == '1':
 			jogador_vs_jogador()
 			
