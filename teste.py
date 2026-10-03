@@ -95,7 +95,7 @@ def cabecalho(titulo):
 
 def jogador_vs_computador():
 	tabuleiro = {1:' ', 2: ' ', 3: ' ', 4: ' ', 5: ' ', 6: ' ', 7: ' ', 8: ' ', 9: ' '}
-	cabecalho('Bem- vindo ao modo jogador contra computador')
+	cabecalho('Bem - vindo ao modo jogador contra computador')
 	
 	while True:
 		vez_do_jogador(tabuleiro, 'X', 'Você escolheu posição')
@@ -111,7 +111,7 @@ def jogador_vs_computador():
 
 def jogador_vs_jogador():
 	tabuleiro = {1:' ', 2: ' ', 3: ' ', 4: ' ', 5: ' ', 6: ' ', 7: ' ', 8: ' ', 9: ' '}
-	cabecalho('Bem- vindo ao modo jogador contra jogador')
+	cabecalho('Bem - vindo ao modo jogador contra jogador')
 	
 	while True:
 		vez_do_jogador(tabuleiro, 'X', 'Jogador X escolheu posição')
