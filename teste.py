@@ -98,7 +98,7 @@ def jogador_vs_computador():
 	cabecalho('Bem- vindo ao modo jogador contra computador')
 	
 	while True:
-		vez_do_jogador(tabuleiro, 'X', 'Você escolheu posição',
+		vez_do_jogador(tabuleiro, 'X', 'Você escolheu posição')
 		
 		if checar_vitoria(tabuleiro, 'X' '\033[1;32mParabéns você venceu!\033[0m\n'):
 			break
