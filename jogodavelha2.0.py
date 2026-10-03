@@ -71,6 +71,18 @@ def condicao_vitoria(tabuleiro, simbolo):
 	return False
 	
 	
+def checar_vitoria(tabuleiro, simbolo, texto):
+	if condicao_vitoria(tabuleiro, simbolo):
+		print(texto)
+		return True
+		
+	if ' ' not in tabuleiro.values():
+		print('\033[1;29mO jogo empatou :/ \033[0m\n')
+		return True
+		
+	return False
+	
+	
 def cabecalho(titulo):
 	print('-' * 45)
 	print(titulo)
@@ -83,46 +95,34 @@ def cabecalho(titulo):
 
 def jogador_vs_computador():
 	tabuleiro = {1:' ', 2: ' ', 3: ' ', 4: ' ', 5: ' ', 6: ' ', 7: ' ', 8: ' ', 9: ' '}
-	cabecalho('Bem- vindo ao modo jogador contra computador')
+	cabecalho('Bem - vindo ao modo jogador contra computador')
 	
 	while True:
 		vez_do_jogador(tabuleiro, 'X', 'Você escolheu posição')
 		
-		if condicao_vitoria(tabuleiro, 'X'):
-			print('\033[1;32mParabéns você venceu!\n(o computador é burro!)\033[0m\n')
-			break
-		
-		if ' ' not in tabuleiro.values():
-			print('\033[1;29mO jogo empatou :/ \033[0m\n')
+		if checar_vitoria(tabuleiro, 'X', '\033[1;32mParabéns você venceu!\033[0m\n'):
 			break
 		
 		vez_do_computador(tabuleiro)
 			
-		if condicao_vitoria(tabuleiro, 'O'):
-			print('\033[1;31mComputador venceu!\033[0m\n')
+		if checar_vitoria(tabuleiro, 'O', '\033[1;31mO computador venceu\033[0m\n'):
 			break
 
 
 def jogador_vs_jogador():
 	tabuleiro = {1:' ', 2: ' ', 3: ' ', 4: ' ', 5: ' ', 6: ' ', 7: ' ', 8: ' ', 9: ' '}
-	cabecalho('Bem- vindo ao modo jogador contra jogador')
+	cabecalho('Bem - vindo ao modo jogador contra jogador')
 	
 	while True:
 		vez_do_jogador(tabuleiro, 'X', 'Jogador X escolheu posição')
 		
-		if condicao_vitoria(tabuleiro, 'X'):
-			print('\033[1;32mParabéns jogador X você venceu!\033[0m\n')
-			break
-		
-		if ' ' not in tabuleiro.values():
-			print('\033[1;29mO jogo empatou :/ \033[0m\n')
+		if checar_vitoria(tabuleiro, 'X', '\033[1;32mParabéns jogador X você venceu!\033[0m\n'):
 			break
 			
 		vez_do_jogador(tabuleiro, 'O', 'Jogador O escolheu posição')
 		
-		if condicao_vitoria(tabuleiro, 'O'):
-			print('\033[1;32mParabéns jogador O você venceu!\033[0m\n')
-			break	
+		if checar_vitoria(tabuleiro, 'O', '\033[1;32mParabéns jogador O você venceu!\033[0m\n'):
+			break
 			
 			
 def main():
